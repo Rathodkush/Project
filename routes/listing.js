@@ -65,6 +65,7 @@ router.post(
 router.get(
   "/:id/edit",
   isLoggedIn,
+  isOwner,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
@@ -80,7 +81,7 @@ router.get(
 router.put(
   "/:id",
   isLoggedIn,
-
+isOwner,
   validateListing,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
